@@ -2,8 +2,6 @@ package com.project.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,8 +9,8 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @Column(name = "email")
@@ -35,10 +33,10 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public int getUserId() {
         return id;
     }
-    public void setId(int id) {
+    public void setUserId(int id) {
         this.id = id;
     }
     public String getEmail() {

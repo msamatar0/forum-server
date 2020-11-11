@@ -23,7 +23,7 @@ public class UserController {
         return repo.findAll();
     }
 
-    @GetMapping(path = "/{user_id}", produces = "application/json")
+    @GetMapping(path = "/{id}", produces = "application/json")
     public User getUser(@PathVariable("id") int id) {
         return repo.findById(id);
     }
@@ -33,8 +33,9 @@ public class UserController {
         return repo.findByUsername(username);
     }
 
-    @PostMapping(path = "/users", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/users")
     public User addUser(@RequestBody User user) {
+        System.out.println("New User: " + user);
         return repo.save(user);
     }
 }

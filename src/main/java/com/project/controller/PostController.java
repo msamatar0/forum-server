@@ -23,13 +23,14 @@ public class PostController {
         return repo.findAll();
     }
 
-    @GetMapping("/{post_id}")
-    public Post getPost(@PathVariable("id") int postId) {
-        return repo.findById(postId);
+    @GetMapping("/{id}")
+    public Post getPost(@PathVariable("id") int id) {
+        return repo.findById(id);
     }
 
     @PostMapping("/posts")
-    public void addUser(@RequestBody Post post) {
+    public void addPost(@RequestBody Post post) {
+        System.out.println("New Post: " + post);
         repo.save(post);
     }
 }

@@ -4,8 +4,6 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,16 +13,15 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "post")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "post_id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "post_date")
+    @Column(name = "timestamp")
     @CreationTimestamp
-    private Date postDate;
+    private Date timestamp;
     
-    @Column(name = "posted_by")
-    private String postedBy;
+    @Column(name = "poster")
+    private String poster;
 
     @Column(name = "subject")
     private String subject;
@@ -40,8 +37,8 @@ public class Post {
     }
     public Post(int id, Date postDate, String postedBy, String subject, String content, String path) {
         this.id = id;
-        this.postDate = postDate;
-        this.postedBy = postedBy;
+        this.timestamp = postDate;
+        this.poster = postedBy;
         this.subject = subject;
         this.content = content;
         this.path = path;
@@ -54,16 +51,16 @@ public class Post {
         return id;
     }
     public void setPostDate(Date postDate) {
-        this.postDate = postDate;
+        this.timestamp = postDate;
     }
     public Date getPostDate() {
-        return postDate;
+        return timestamp;
     }
     public void setPostedBy(String postedBy) {
-        this.postedBy = postedBy;
+        this.poster = postedBy;
     }
     public String getPostedBy() {
-        return postedBy;
+        return poster;
     }
     public void setSubject(String subject) {
         this.subject = subject;
@@ -86,6 +83,6 @@ public class Post {
     
     @Override
     public String toString() {
-        return id + ": " + subject + ", " + postedBy + ", " + content + ", [" + path + "]";
+        return id + ": " + subject + ", " + poster + ", " + content + ", [" + path + "]";
     }
 }
