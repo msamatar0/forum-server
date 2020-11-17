@@ -1,6 +1,6 @@
 package com.project.forum;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.project.controller.PostController;
 import com.project.controller.UserController;
@@ -8,24 +8,29 @@ import com.project.model.Post;
 import com.project.model.User;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class ForumApplicationTests {
+	private UserController uc;
+	private PostController pc;
+
+	@Autowired
+	public void setup(UserController uc, PostController pc){
+		this.uc = uc;
+		this.pc = pc;
+	}
 
 	@Test
 	void testGetUsers() {
-		UserController uc = new UserController();
-		uc.addUser(new User(99, "email@email.com",
-			"person", "pass"));
-		User u = uc.getUser(99);
-		assertTrue(u.getUsername().equals("person"));
+		User u = uc.getUser(2);
+		assertEquals("msamatar0", u.getUsername());
 	}
 
 	@Test
 	void testGetPosts() {
-		PostController pc = new PostController();
 		Post p = pc.getPost(1);
-		assertTrue(p.getSubject().equals("The First Post ever Made, Ever"));
+		assertEquals("hi", p.getContent());
 	}
 }
